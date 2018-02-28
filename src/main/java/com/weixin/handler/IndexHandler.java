@@ -10,6 +10,6 @@ public class IndexHandler {
 
 	@RequestMapping("/index")
 	public String index() {
-		return ResourcesUtil.getValue("Pages", "front.index.page");
+		return "login";
 	}
 }

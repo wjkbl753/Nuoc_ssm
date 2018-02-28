@@ -1,5 +1,9 @@
+<!-- rukou -->
+
 <html>
 <body>
-<h2>Hello World!</h2>
 </body>
+<script>
+	location='${pageContext.request.contextPath}/index';
+</script>
 </html>

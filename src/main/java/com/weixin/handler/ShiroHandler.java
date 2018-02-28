@@ -22,12 +22,12 @@ public class ShiroHandler {
 
 	@RequestMapping("/loginUrl")
 	public String loginUrl() {
-		return ResourcesUtil.getValue("Pages", "shiro.loginUrl.page");
+		return "login";
 	}
 	
 	@RequestMapping("/successUrl")
 	public String successUrl() {
-		return ResourcesUtil.getValue("Pages", "shiro.successUrl.page");
+		return "index";
 	}
 	
 	@RequestMapping("/unauthorizedUrl")
@@ -36,15 +36,18 @@ public class ShiroHandler {
 	}
 	
 	@RequestMapping("/login")
-	public String login(String mid,String password,String code,HttpSession httpSession) {
-		String rand = (String)httpSession.getAttribute("rand");
+	public String login(String username,String password,String groupname,HttpSession httpSession) {
+//		String rand = (String)httpSession.getAttribute("rand");
 		//判断验证码：
-		if(!rand.equals(code)) {
-			return ResourcesUtil.getValue("Pages", "shiro.loginUrl.page");
-		}
+//		if(!rand.equals(code)) {
+//			return ResourcesUtil.getValue("Pages", "shiro.loginUrl.page");
+//		}
+		System.out.println(username);
+		System.out.println(password);
+		System.out.println(groupname);
 		 Subject currentUser = SecurityUtils.getSubject();
 	        if (!currentUser.isAuthenticated()) {
-	            UsernamePasswordToken token = new UsernamePasswordToken(mid,password);
+	            UsernamePasswordToken token = new UsernamePasswordToken(username,password);
 	            token.setRememberMe(true);
 	            try {
 	                currentUser.login(token);
